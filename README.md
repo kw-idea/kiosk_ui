@@ -235,3 +235,67 @@ kiosk user interface using python flet
 -   스타일 토글: 카테고리 버튼 선택 상태를 스타일 객체 교체로 구현.
 
 -   간결한 팝업 흐름: 주문 완료 시 단일 다이얼로그로 종료. (파일 저장/주문번호/관리자 통계 없음)
+
+## 주요 메서드와 이벤트 흐름
+
+### 장바구니 갱신
+
+-   update_cart_display()
+
+    -   page.session["cart"]를 읽어 cart_list를 재구성.
+
+    -   각 항목은 create_cart_item_row(item)로 Row 생성(이름/수량 +/-/소계).
+
+    -   합계 계산해 total_price_text에 반영 → page.update().
+
+-   create_cart_item_row(item)
+
+    -   가운데에 수량 감소/증가 아이콘 버튼
+
+    -   두 버튼 모두 on_click = change_quantity
+
+    -   data로 {name, delta} 전달(이벤트 핸들러가 무엇을 어떻게 바꿀지 알게 함)
+
+-   change_quantity(e)
+
+    -   e.control.data에서 name, delta를 읽어 해당 항목 수량 변경.
+
+    -   0 이하가 되면 삭제.
+
+    -   세션에 다시 저장 후 update_cart_display().
+
+### 메뉴 선택/추가
+
+-   create_menu_item_card(item_data)
+
+    -   이미지 + 이름/가격 텍스트 카드
+
+    -   카드 전체 클릭 → add_to_cart
+
+    -   control.data로 item_data를 넘김
+
+-   add_to_cart(e)
+
+    -   e.control.data에서 메뉴 정보를 읽어 카트에 반영(존재 시 +1, 없으면 추가).
+
+    -   세션 저장 후 update_cart_display().
+
+### 카테고리 전환
+
+-   select_category(e)
+
+    -   모든 버튼을 기본 스타일로 초기화 → 클릭된 버튼만 선택 스타일 적용.
+
+    -   선택된 카테고리 이름으로 menu_grid.controls를 새로 구성.
+
+    -   page.update()로 즉시 반영.
+
+### 결제 처리
+
+-   place_order(e)
+
+    -   카트 비었으면 SnackBar 알림.
+
+    -   아니면 주문 완료 AlertDialog 표시.
+
+    -   확인 시 다이얼로그 닫고 카트 비움(+UI 갱신).
