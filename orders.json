@@ -1,0 +1,68 @@
+[
+  {
+    "order_number": 1,
+    "timestamp": "2025-09-26T00:38:20.355146",
+    "order_type": "매장",
+    "items": [
+      {
+        "name": "스테이크",
+        "price": 32000,
+        "quantity": 1,
+        "image": "🥩"
+      }
+    ],
+    "total": 32000
+  },
+  {
+    "order_number": 2,
+    "timestamp": "2025-09-26T00:38:42.831744",
+    "order_type": "포장",
+    "items": [
+      {
+        "name": "오렌지주스",
+        "price": 4000,
+        "quantity": 2,
+        "image": "🧃"
+      },
+      {
+        "name": "사이다",
+        "price": 3000,
+        "quantity": 2,
+        "image": "🥤"
+      },
+      {
+        "name": "갈릭브레드",
+        "price": 4000,
+        "quantity": 1,
+        "image": "🥖"
+      }
+    ],
+    "total": 18000
+  },
+  {
+    "order_number": 3,
+    "timestamp": "2025-09-26T00:44:19.184803",
+    "order_type": "매장",
+    "items": [
+      {
+        "name": "스테이크",
+        "price": 32000,
+        "quantity": 1,
+        "image": "🥩"
+      },
+      {
+        "name": "치즈스틱",
+        "price": 7000,
+        "quantity": 1,
+        "image": "🧀"
+      },
+      {
+        "name": "오렌지주스",
+        "price": 4000,
+        "quantity": 1,
+        "image": "🧃"
+      }
+    ],
+    "total": 43000
+  }
+]
